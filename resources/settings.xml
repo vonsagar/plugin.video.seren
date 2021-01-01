@@ -260,6 +260,9 @@
         <setting id="general.enablesizelimit" type="bool" label="40046" default="true" />
         <setting id="general.sizelimit.movie" type="slider" subsetting="true" label="40154" option="int" range="0,1,300" default="10" visible="eq(-1,true)" />
         <setting id="general.sizelimit.episode" type="slider" subsetting="true" label="40047" option="int" range="0,1,300" default="10" visible="eq(-2,true)" />
+        <setting id="general.sizeperminlimit" type="bool" label="40363" default="true" />
+        <setting id="general.sizeperminlimit.movie" type="slider" subsetting="true" label="40364" option="int" range="0,1,300" default="10" visible="eq(-1,true)" />
+        <setting id="general.sizeperminlimit.episode" type="slider" subsetting="true" label="40365" option="int" range="0,1,300" default="10" visible="eq(-2,true)" />
         <setting id="general.disable3d" type="bool" label="40094" default="true" />
         <setting id="general.disable265" type="bool" label="40039" default="false" />
         <setting id="general.disablelowQuality" type="bool" label="40109" default="false" />

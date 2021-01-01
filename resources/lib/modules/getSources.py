@@ -76,6 +76,7 @@ class Sources(DisplayWindow):
         self.background_dialog = None
         self.thread_pool = ThreadPool(workers=100)
         self.running_providers = []
+        self.duration = 0
 
         self.line1 = ''
         self.line2 = ''
@@ -98,6 +99,7 @@ class Sources(DisplayWindow):
 
             if 'showInfo' in self.args:
                 self.trakt_id = self.args['showInfo']['ids']['trakt']
+                self.duration = self.args['showInfo']['info']['duration'] / 60
 
                 if self.display_style == 1 and not self.silent:
                     self.background_dialog.create('%s - S%sE%s' % (self.args['showInfo']['info']['tvshowtitle'],
@@ -107,6 +109,7 @@ class Sources(DisplayWindow):
 
             else:
                 self.trakt_id = self.args['ids']['trakt']
+                self.duration = self.args['info']['duration'] / 60
 
                 if self.display_style == 1 and not self.silent:
                     self.background_dialog.create('%s (%s)' % (self.args['info']['title'],
@@ -861,7 +864,16 @@ class Sources(DisplayWindow):
                 size_limit = int(tools.getSetting('general.sizelimit.episode')) * 1024
             else:
                 size_limit = int(tools.getSetting('general.sizelimit.movie')) * 1024
+
             torrent_list = [i for i in torrent_list if i.get('size', 0) < size_limit]
+
+        if tools.getSetting('general.sizeperminlimit') == 'true':
+            if 'showInfo' in self.args:
+                sizepermin_limit = int(tools.getSetting('general.sizeperminlimit.episode'))
+            else:
+                sizepermin_limit = int(tools.getSetting('general.sizeperminlimit.movie'))
+
+            torrent_list = [i for i in torrent_list if (i.get('size', 0) / self.duration) < sizepermin_limit]
 
         if tools.getSetting('general.265sort') == 'true':
             torrent_list = [i for i in torrent_list if 'HEVC' in i['info']] + \

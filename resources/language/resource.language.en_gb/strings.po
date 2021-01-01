@@ -1742,3 +1742,15 @@ msgstr ""
 msgctxt "#40362"
 msgid "There appears to be a problem with you Trakt Authorization \nPlease try re-authorizing your account"
 msgstr ""
+
+msgctxt "#40363"
+msgid "Enable File Size Per Minute Limit"
+msgstr ""
+
+msgctxt "#40364"
+msgid "Movie File Size Per Minute Limit (MB)"
+msgstr ""
+
+msgctxt "#40365"
+msgid "Episode File Size Per Minute Limit (MB)"
+msgstr ""
